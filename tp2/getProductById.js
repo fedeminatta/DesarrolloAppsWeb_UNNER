@@ -11,7 +11,10 @@ async function getProductById(id) {
 		}
 
 		const data = await response.json();
-		console.log('Producto:', data);
+		console.log('Producto:', data.title, `| ID ${id}`);
+		console.log('Precio:', data.price);
+		console.log('Categoria:', data.category);
+		console.log('Descripcion:', data.description);
 	} catch (error) {
 		console.error('Error:', error.message);
 	}
