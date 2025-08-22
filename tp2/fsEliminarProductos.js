@@ -5,7 +5,7 @@ const precioLimite = 25.00
 const EliminarProductosPorPrecio = async()=>{
     try{
         // Leer archivo
-        const datos = await fs.readFile('./productosSelecionados.json', 'utf-8');
+        const datos = await fs.readFile('./productosSeleccionados.json', 'utf-8');
         let productos = JSON.parse(datos);
         console.log('\n ---- Lista original ----')
         console.log(productos);
