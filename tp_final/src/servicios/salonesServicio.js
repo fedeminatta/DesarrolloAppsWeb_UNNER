@@ -8,4 +8,8 @@ export default class SalonesServicio {
 	buscarTodos = () => {
 		return this.salones.buscarTodos();
 	};
+
+	buscarSalonPorId = (id) =>{
+		return this.salones.buscarSalonPorId(id);
+	}
 }
