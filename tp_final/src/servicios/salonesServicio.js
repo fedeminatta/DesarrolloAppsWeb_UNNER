@@ -12,4 +12,8 @@ export default class SalonesServicio {
 	buscarSalonPorId = (id) =>{
 		return this.salones.buscarSalonPorId(id);
 	}
+
+	agregar =(datosSalon) => {
+		return this.salones.agregar(datosSalon);
+	}
 }

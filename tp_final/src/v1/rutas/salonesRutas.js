@@ -7,5 +7,6 @@ const router = express.Router();
 
 router.get('/', salonesControlador.buscarTodos);
 router.get('/:id',(req, res) => salonesControlador.buscarPorId(req, res));
+router.post('/', (req, res) => salonesControlador.agregar(req, res));
 
 export { router };
