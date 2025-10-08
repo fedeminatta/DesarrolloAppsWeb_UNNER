@@ -27,5 +27,21 @@ export default class Salones {
         const [resultado] = await conexion.execute(sql, valores);
         return resultado;
     }
+
+    editar = async (id, datosSalon) => {
+        const sql = `UPDATE salones SET titulo = ?, direccion = ?, latitud = ?, longitud = ?, capacidad = ?, importe = ? 
+        WHERE salon_id = ? AND activo = 1 `;
+        const  valores = [
+            datosSalon.titulo,
+            datosSalon.direccion,
+            datosSalon.latitud,
+            datosSalon.longitud,
+            datosSalon.capacidad,
+            datosSalon.importe,
+            id
+        ];
+        const [resultado] = await conexion.execute(sql, valores);
+        return resultado;
+    }
     
 }

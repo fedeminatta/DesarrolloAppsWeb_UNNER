@@ -16,4 +16,8 @@ export default class SalonesServicio {
 	agregar =(datosSalon) => {
 		return this.salones.agregar(datosSalon);
 	}
+
+	editar = (id, datosSalon) => {
+		return this.salones.editar(id, datosSalon);
+	}
 }
