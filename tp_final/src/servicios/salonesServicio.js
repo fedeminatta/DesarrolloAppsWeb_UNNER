@@ -20,4 +20,8 @@ export default class SalonesServicio {
 	editar = (id, datosSalon) => {
 		return this.salones.editar(id, datosSalon);
 	}
+
+	eliminar = (id) => {
+		return this.salones.eliminar(id);
+	}
 }

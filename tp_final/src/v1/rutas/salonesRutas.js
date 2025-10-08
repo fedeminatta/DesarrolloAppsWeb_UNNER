@@ -9,5 +9,6 @@ router.get('/', salonesControlador.buscarTodos);
 router.get('/:id',(req, res) => salonesControlador.buscarPorId(req, res));
 router.post('/', (req, res) => salonesControlador.agregar(req, res));
 router.put('/:id',(req, res) => salonesControlador.editar(req, res));
+router.delete('/:id', (req, res) => salonesControlador.eliminar(req, res));
 
 export { router };

@@ -44,4 +44,10 @@ export default class Salones {
         return resultado;
     }
     
+
+    eliminar = async (id) =>{
+        const sql = 'UPDATE salones SET activo = 0 WHERE salon_id = ? AND activo = 1';
+        const [resultado] = await conexion.execute(sql, [id]);
+        return resultado;
+    }
 }

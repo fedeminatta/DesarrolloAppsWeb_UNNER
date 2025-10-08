@@ -3,6 +3,7 @@ import buscarTodosSalon from "./buscarTodosSalon.js"
 import buscarSalonPorId from "./buscarSalonPorId.js";
 import agregarSalon from "./agregarSalon.js";
 import editarSalon from "./editarSalones.js";
+import eliminarSalon from "./eliminarSalon.js";
 
 export default class SalonesControlador{
 
@@ -14,4 +15,5 @@ export default class SalonesControlador{
     buscarPorId = (req, res) => buscarSalonPorId(req, res, this.salonesServicio);
     agregar = (req, res) => agregarSalon(req, res, this.salonesServicio);
     editar = (req, res) => editarSalon(req, res, this.salonesServicio);
+    eliminar = (req, res) => eliminarSalon(req, res, this.salonesServicio);
 }
