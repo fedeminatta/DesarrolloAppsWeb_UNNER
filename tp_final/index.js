@@ -5,8 +5,14 @@ import { fileURLToPath } from 'url';
 import { readFile } from 'fs/promises';
 import path from 'path';
 
+// Importamos las rutas de reportes
+import reportesRutas from './src/v1/rutas/reportesRutas.js';
+
 const app = express();
 app.use(express.json());
+
+// Usamos las rutas bajo el prefijo /api/reportes
+app.use('/api/reportes', reportesRutas);
 
 app.get('/estado', (req, res) => {
 	res.json({ ok: true });
