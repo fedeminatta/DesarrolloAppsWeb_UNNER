@@ -27,28 +27,34 @@ export const obtenerServiciosMasUsados = async () => {
 // FUNCIONALIDAD EXTRA: ENVÍO DE REPORTE POR CORREO
 // =========================================
 
-export const enviarReportePorCorreo = async () => {
+export const enviarReportePorCorreo = async (destinatario = process.env.DEST_EMAIL) => {
   try {
-    // Obtener datos del procedimiento
-    const [rows] = await conexion.query(`
-      SELECT s.titulo AS salon, COUNT(r.reserva_id) AS cantidad_reservas
-      FROM reservas r
-      JOIN salones s ON s.salon_id = r.salon_id
-      GROUP BY s.titulo
-      ORDER BY cantidad_reservas DESC
-    `);
+    // Obtener datos del procedimiento almacenado
+    const [result] = await conexion.query('CALL sp_reservas_por_salon()');
+    const rows = result[0];
 
-    // Generar PDF temporal
-    const filePath = './reporte_salones.pdf';
+    // Generar nombre del PDF con fecha y hora
+    const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+    const filePath = `./reporte_salones_${timestamp}.pdf`;
+
+    // Crear PDF
     const doc = new PDFDocument();
     doc.pipe(fs.createWriteStream(filePath));
 
     doc.fontSize(18).text('Reporte de Reservas por Salón', { align: 'center' });
     doc.moveDown();
+    doc.fontSize(10).text(`Generado el: ${new Date().toLocaleString()}`, { align: 'right' });
+    doc.moveDown();
+
+    doc.moveTo(50, doc.y).lineTo(550, doc.y).stroke();
+    doc.moveDown();
 
     rows.forEach((r) => {
-      doc.fontSize(12).text(`${r.salon}: ${r.cantidad_reservas} reservas`);
+      doc.fontSize(12).text(`${r.salon.padEnd(25, ' ')} ${r.cantidad_reservas} reservas`);
     });
+
+    doc.moveDown();
+    doc.moveTo(50, doc.y).lineTo(550, doc.y).stroke();
 
     doc.end();
 
@@ -64,22 +70,20 @@ export const enviarReportePorCorreo = async () => {
     // Configurar correo
     const mailOptions = {
       from: process.env.USER_EMAIL,
-      to: process.env.DEST_EMAIL,
+      to: destinatario,
       subject: 'Reporte de Reservas por Salón',
-      text: 'Adjunto el reporte de reservas en formato PDF generado automáticamente.',
-      attachments: [
-        {
-          filename: 'reporte_salones.pdf',
-          path: filePath,
-        },
-      ],
+      text: 'Adjunto el reporte en formato PDF generado automáticamente.',
+      attachments: [{ filename: 'reporte_salones.pdf', path: filePath }],
     };
 
-    // Enviar correo
+    // Enviar correo y eliminar archivo temporal
     await transporter.sendMail(mailOptions);
+    await fs.promises.unlink(filePath).catch(() => {});
     console.log('Correo enviado correctamente.');
+
   } catch (error) {
     console.error('Error al enviar el reporte:', error);
     throw error;
   }
 };
+

@@ -1,9 +1,10 @@
+// src/v1/rutas/reportesRutas.js
 import express from 'express';
 import {
   obtenerEstadisticasSalones,
   obtenerIngresosPorMes,
   obtenerServiciosMasUsados,
-  enviarReportePorCorreo,
+  enviarReportePorCorreo
 } from '../../servicios/reportesServicio.js';
 
 import { Parser } from 'json2csv';
@@ -16,6 +17,8 @@ const router = express.Router();
 //
 // RUTAS PARA DATOS EN FORMATO JSON
 //
+
+// Reservas por salón
 router.get('/estadisticas/salones', async (req, res) => {
   try {
     const data = await obtenerEstadisticasSalones();
@@ -26,6 +29,7 @@ router.get('/estadisticas/salones', async (req, res) => {
   }
 });
 
+// Ingresos por mes
 router.get('/estadisticas/ingresos', async (req, res) => {
   try {
     const data = await obtenerIngresosPorMes();
@@ -36,6 +40,7 @@ router.get('/estadisticas/ingresos', async (req, res) => {
   }
 });
 
+// Servicios más usados
 router.get('/estadisticas/servicios', async (req, res) => {
   try {
     const data = await obtenerServiciosMasUsados();
@@ -52,6 +57,7 @@ router.get('/estadisticas/servicios', async (req, res) => {
 router.get('/exportar/salones/csv', async (req, res) => {
   try {
     const data = await obtenerEstadisticasSalones();
+
     const parser = new Parser();
     const csv = parser.parse(data);
 
@@ -70,9 +76,11 @@ router.get('/exportar/salones/csv', async (req, res) => {
 router.get('/exportar/salones/pdf', async (req, res) => {
   try {
     const data = await obtenerEstadisticasSalones();
+
     const __filename = fileURLToPath(import.meta.url);
     const __dirname = path.dirname(__filename);
 
+    // Configuración del PDF
     res.setHeader('Content-Type', 'application/pdf');
     res.setHeader('Content-Disposition', 'attachment; filename=reporte_salones.pdf');
 
@@ -94,11 +102,17 @@ router.get('/exportar/salones/pdf', async (req, res) => {
 });
 
 //
-// ENVIAR REPORTE POR CORREO (funcionalidad extra)
+// ENVIAR REPORTE POR CORREO (sin API key)
 //
 router.get('/enviar/salones/pdf', async (req, res) => {
   try {
-    await enviarReportePorCorreo(); // llamada al servicio
+    const { to } = req.query;
+
+    if (!to) {
+      return res.status(400).json({ ok: false, mensaje: 'Debe especificar un correo destinatario (parámetro ?to=)' });
+    }
+
+    await enviarReportePorCorreo(to);
     res.json({ ok: true, mensaje: 'Correo enviado con el PDF adjunto.' });
   } catch (error) {
     console.error(error);
