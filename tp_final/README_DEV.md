@@ -1,4 +1,4 @@
-## 🧠 README_DEV.md  
+## README_DEV.md  
 ### Documentación técnica – Aplicación de Reservas
 
 ---
