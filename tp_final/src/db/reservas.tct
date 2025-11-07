@@ -1,0 +1,29 @@
+segun el modelo de datos que utiilice y arme entre servidor, cliente y aolicacion 
+podria:
+      1-crear la reserva
+      2-listar todos los servicios y mandarlos
+o todo en uno y mandar todo a mi aplicacion y que esta resuelva
+
+ entonces:
+  lo importante es CREAR RESERVA 
+        y crear tantos SERVICIOS_RESERVAS como SERVICIOS tenga mi reserva
+  IMPORTANTE:  El administrador y el cliente debe recibir una nptificacion automatica cuando se realiza una reserva
+            en handballs
+        
+        >> para esto creo un archivo de notificacionesServicios.js
+            y dentro de esa clase crear el metodo de enviar correo
+
+            Los servicios se puede comunicar en el mismo nivel
+
+reservasRutas>>
+        check('servicios','Faltan los servicios de la reserva.').
+        >> notEmpty().isArray(), Es para verificar que no este vacio y que sea un array de 1 o mas servicios asociados
+        >> .isfloat / isNumeric >> verificar que el campo sea numerico
+        >> withMessage (...) >> devuelve el mensaje
+
+        el servicio puede o no ser opcional
+
+reservasServicios>>
+
+        >> crear: descarto servicios y creo primero la reserva sola
+        
