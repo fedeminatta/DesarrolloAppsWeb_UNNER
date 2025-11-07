@@ -4,7 +4,7 @@ import {validarCampos} from '../middlewares/validarCampos.js';
 import ReservasControlador from '../controladores/reservasControlador.js'
 
 
-const router = Express.Router();
+const router = express.Router();
 const reservasControlador = new ReservasControlador();
 
 
@@ -19,7 +19,7 @@ router.post('/', [
     check('servicios.*.importe').isNumeric().withMessage('El importe debe ser numérico'),
     validarCampos
 ],
-reservasControlador.crear);
+reservasControlador.agregar);
 router.put('/:id',reservasControlador.editar);
 router.delete('/:id',reservasControlador.eliminar);
 

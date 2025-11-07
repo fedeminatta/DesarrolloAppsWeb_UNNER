@@ -41,17 +41,18 @@ export default class ReservasServicio {
                 importe_total}
 
             //solo creo la reserva
-            const resultado = await this.reserva.crear(nuevaReserva);
+            const resultado = await this.reserva.agregar(nuevaReserva);
 
             if(!resultado) {
                 return null;
             }
         
         //creo las relaciones reservas_-servicios
-            const relacionReservasServicios = await this.reservas_servicios.crear(resultado.reserva_id,servicios);
+            const relacionReservasServicios = await this.reservas_servicios.agregar(resultado.reserva_id,servicios);
             console.log(relacionReservasServicios)
         //busco y envío los datos de notificación
-            const datosParaNotificacion = await this.reserva.datosParaNotificacion.crear(resultado.reserva_id);
+            const datosParaNotificacion = await this.reserva.datosParaNotificacion(resultado.reserva_id);
+
             console.log(datosParaNotificacion)
 
         await this.notificacion.enviarCorreo(datosParaNotificacion);
@@ -65,24 +66,24 @@ export default class ReservasServicio {
 
     editar = (reserva_id,datosReserva) =>{
         
-        const existe = this.reservas_servicios.buscarPorId(reserva_id);
+        const existe = this.reserva.buscarPorId(reserva_id);
 
         if(!existe){
             return null;
         };
-        return this.reservas_servicios.editar(reserva_id,datosReserva);
+        return this.reserva.editar(reserva_id,datosReserva);
     }
 
 
 
     eliminar = (reserva_id) => {
 
-        const existe = this.reservas_servicios.buscarPorId(reserva_id);
+        const existe = this.reserva.buscarPorId(reserva_id);
 
         if(!existe){
             return null;
         };
-        return this.reservas_servicios.eliminar(reserva_id);
+        return this.reserva.eliminar(reserva_id);
     }
     }
     

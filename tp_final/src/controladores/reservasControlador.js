@@ -1,6 +1,6 @@
 import ReservasServicio from '../servicios//reservasServicio.js';
 
-export default class ReservasServicio{
+export default class ReservasControlador{
     constructor(){
         this.reservasServicio = new ReservasServicio();
     }
@@ -57,7 +57,36 @@ export default class ReservasServicio{
 
 
 
-    editar = async (req,res) =>{};
+    editar = async(req,res) =>{
+        try{
+
+        const { id } = req.params;
+        const datosReserva = req.body;
+
+
+        const resultado = await this.reservasServicio.editar(id, datosReserva);
+        
+        if(resultado.affectedRows === 0 ){
+            res.status(404).json({
+                estado: false,
+                mensaje: 'La reserva no se pudo modificar.'
+            });
+        }else{
+            res.json({
+                estado: true,
+                mensaje: 'Reserva modificada correctamente'
+            });
+        }
+
+        }catch(err){
+
+            console.log('Error en PUT /Reservas/:id', err);
+            res.status(500).json({
+                estado: false,
+                mensaje: 'Error interno del servidor'
+            });
+        };
+    };
 
 
 
@@ -89,7 +118,7 @@ export default class ReservasServicio{
 
             // creo nuevaReserva y le envía los datos de reserva creada anteriormente
 
-                const nuevaReserva =  await this.reservasServicio.crear(reserva)
+                const nuevaReserva =  await this.reservasServicio.agregar(reserva)
 
                 if(!nuevaReserva){
                     return res.status(404).json({

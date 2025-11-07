@@ -39,7 +39,7 @@ export default class Notificacion {
 		});
 
 		const opciones = {
-			to: correoDestino,
+			to: 'lurdesv1996@gmail.com',
 			subject: 'Notificación',
 			html,
 		};
