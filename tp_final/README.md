@@ -6,17 +6,21 @@ PASSWORD = "tu contraseña"
 DATABASE = "nombre bd"
 PUERTO = 3000 (o el puerto donde quieras iniciarlo)
 
+USER_EMAIL=tucorreo@gmail.com
+PASS_EMAIL=pass app email
+DEST_EMAIL=passdestino@gmail.com
+
 #### url de la api
 
-http://localhost:3000/api/v1/
+http://localhost:3000/api/
 
 #### url obtener todos los salones (tambien para crear uno con metodo POST)
 
-http://localhost:3000/api/v1/salones
+http://localhost:3000/api/salones
 
 #### url obtener un solo salon (tambien para editar o eliminar uno)
 
-http://localhost:3000/api/v1/salones/1
+http://localhost:3000/api/salones/1
 
 ### Datos de prueba para crear un salon
 
