@@ -63,7 +63,7 @@ export default class ReservasServicio{
 
     agregar = async (req,res) =>{
         try{
-        // informacion de reservas
+        //información de reservas
             const{
                 fecha_reserva,
                 salon_id,
@@ -87,7 +87,7 @@ export default class ReservasServicio{
                     servicios
                 };
 
-            // creo nuevaReserva y le envio los datos de reserva creada anteriormente
+            // creo nuevaReserva y le envía los datos de reserva creada anteriormente
 
                 const nuevaReserva =  await this.reservasServicio.crear(reserva)
 
