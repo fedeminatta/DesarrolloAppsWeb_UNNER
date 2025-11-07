@@ -1,10 +1,12 @@
 import Reservas from '../db/reservas.js';
 import ReservasServicios from '../db/reservas_servicios.js';
+import Notificacion from '../servicios/notificacionesServicios.js'
 
 export default class ReservasServicio {
     constructor(){
         this.reserva = new Reservas;
         this.reservas_servicios = new ReservasServicios()
+        this.notificacion = new Notificacion();
     }
     buscarTodos = () => {
         return this.reserva.buscarTodos();
@@ -34,8 +36,9 @@ export default class ReservasServicio {
                 usuario_id,
                 turno_id,
                 foto_cumpleaniero,
+                tematica,
                 importe_salon,
-                importe_total }
+                importe_total}
 
             //solo creo la reserva
             const resultado = await this.reserva.crear(nuevaReserva);
@@ -43,12 +46,19 @@ export default class ReservasServicio {
             if(!resultado) {
                 return null;
             }
-            return resultado;
+        
+        //creo las relaciones reservas_-servicios
+            const relacionReservasServicios = await this.reservas_servicios.crear(resultado.reserva_id,servicios);
+            console.log(relacionReservasServicios)
+        //busco y envío los datos de notificación
+            const datosParaNotificacion = await this.reserva.datosParaNotificacion.crear(resultado.reserva_id);
+            console.log(datosParaNotificacion)
 
+        await this.notificacion.enviarCorreo(datosParaNotificacion);
 
-            //creo las relaciones reservas servicios
+        return this.reserva.buscarPorId(resultado.reserva_id);
 
-            
+        
     }
 
 
@@ -76,3 +86,11 @@ export default class ReservasServicio {
     }
     }
     
+
+
+
+
+
+
+
+
