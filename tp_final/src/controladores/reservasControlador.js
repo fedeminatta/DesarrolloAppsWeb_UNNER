@@ -74,7 +74,8 @@ export default class ReservasControlador{
         }else{
             res.json({
                 estado: true,
-                mensaje: 'Reserva modificada correctamente'
+                mensaje: 'Reserva modificada correctamente',
+                reserva: resultado
             });
         }
 

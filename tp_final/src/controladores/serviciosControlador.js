@@ -69,7 +69,7 @@ export default class ServiciosControlador{
         res.status(201).json({
             estado: true,
             mensaje: 'Servicio agregado correctamente',
-            id: resultado.insertId 
+            servicio: resultado
         });
 
         }catch(err){
@@ -98,7 +98,8 @@ export default class ServiciosControlador{
         }else{
             res.json({
                 estado: true,
-                mensaje: 'Servicio modificado correctamente'
+                mensaje: 'Servicio modificado correctamente',
+                servicio: resultado
             });
         }
 
