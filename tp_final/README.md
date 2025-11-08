@@ -36,3 +36,23 @@ en postman/bruno/etc agregar en el body > raw
     "importe": 98000
 }
 ```
+
+#### Consideraciones extra:
+
+- Leer el README-TEST.md
+- Acceder con cd a la carpeta tp_final
+- Realizar un npm install luego de clonar el repo
+- Crear el env con los datos requeridos al inicio
+- Ejecutar el sql en la db que se encuentra en src > db > procedimientos.sql
+- Ejecutar npm run des para levantar el proyecto
+
+#### Participantes:
+
+- Acuña Cristian Mateo
+- Minatta Federico
+- Arce Joaquin
+- Velarde Adrián Alejandro
+- Lurdes Micaela Velarde
+- Diego Gomez
+
+### Link del video:
