@@ -8,7 +8,7 @@ const salonesControlador = new SalonesControlador();
 const router = express.Router();
 
 router.get('/', salonesControlador.buscarTodos);
-router.get('/:salon_id', salonesControlador.buscarSalonPorId);
+router.get('/:salon_id', salonesControlador.buscarPorId);
 router.put('/:id',salonesControlador.editar);
 router.post('/', [
     check('titulo','El titulo es necesario.').notEmpty(),

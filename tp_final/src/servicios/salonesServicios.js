@@ -8,8 +8,8 @@ export default class SalonesServicio{
         return this.salones.buscarTodos();
     };
 
-    buscarSalonPorId = (salon_id) =>{
-		return this.salones.buscarSalonPorId(salon_id);
+    buscarPorId = (salon_id) =>{
+		return this.salones.buscarPorId(salon_id);
 	};
 
     agregar =(datosSalon) => {
@@ -18,7 +18,7 @@ export default class SalonesServicio{
 
 	editar = (salon_id,datosSalon) =>{
         //verificar si existe
-        const existe = this.salones.buscarSalonPorId(salon_id);
+        const existe = this.salones.buscarPorId(salon_id);
         
         if(!existe){
             return null;
@@ -28,7 +28,7 @@ export default class SalonesServicio{
 
     eliminar = (salon_id) => {
         //verificar que exista
-        const existe = this.salones.buscarSalonPorId(salon_id);
+        const existe = this.salones.buscarPorId(salon_id);
 
         if(!existe){
             return null;

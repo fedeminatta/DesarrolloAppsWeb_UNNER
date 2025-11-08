@@ -10,8 +10,8 @@ export default class Serviciosservicio{
         return this.servicios.buscarTodos();
     };
 
-    buscarServicioPorId = (servicio_id) =>{
-		return this.servicios.buscarServicioPorId(servicio_id);
+    buscarPorId = (servicio_id) =>{
+		return this.servicios.buscarPorId(servicio_id);
 	};
 
     agregar =(datosServicios) => {
@@ -20,7 +20,7 @@ export default class Serviciosservicio{
 
     editar = (servicio_id,datosServicios) =>{
         //verificar si existe
-        const existe = this.servicios.buscarServicioPorId(servicio_id);
+        const existe = this.servicios.buscarPorId(servicio_id);
         
         if(!existe){
             return null;
@@ -30,7 +30,7 @@ export default class Serviciosservicio{
 
     eliminar = (servicio_id) => {
         //verificar que exista
-        const existe = this.servicios.buscarServicioPorId(servicio_id);
+        const existe = this.servicios.buscarPorId(servicio_id);
 
         if(!existe){
             return null;
