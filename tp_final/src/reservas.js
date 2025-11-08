@@ -1,5 +1,6 @@
 import express from 'express';
 import passport from 'passport';
+import cors from 'cors';
 import {estrategia, validacion} from './config/passport.js';
 import {router as salonesRutas} from './rutas/salonesRutas.js';
 import {router as serviciosRutas} from './rutas/serviciosRutas.js';
@@ -10,6 +11,7 @@ import {router as authRutas} from './rutas/authRutas.js';
 import { router as reportesRutas } from './v1/rutas/reportesRutas.js';
 
 const app = express();
+app.use(cors());
 app.use(express.json());
 
 //passport
