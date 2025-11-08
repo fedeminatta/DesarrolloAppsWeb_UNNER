@@ -70,8 +70,8 @@ export default class SalonesControlador{
 
         res.status(201).json({
             estado: true,
-            mensaje: 'Salon agregado correctamente',
-            id: resultado.insertId 
+            mensaje: 'Salon creado correctamente',
+            id: resultado.insertId
         });
 
         }catch(err){
@@ -102,7 +102,8 @@ export default class SalonesControlador{
         }else{
             res.json({
                 estado: true,
-                mensaje: 'Salon modificado correctamente'
+                mensaje: 'Salon modificado correctamente',
+                salon: resultado
             });
         }
 

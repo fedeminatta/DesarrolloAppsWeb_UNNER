@@ -69,7 +69,7 @@ export default class TurnosControlador{
         res.status(201).json({
             estado: true,
             mensaje: 'Turno agregado correctamente',
-            id: resultado.insertId 
+            turno: resultado
         });
 
         }catch(err){
@@ -98,7 +98,8 @@ export default class TurnosControlador{
         }else{
             res.json({
                 estado: true,
-                mensaje: 'Turno modificado correctamente'
+                mensaje: `Turno modificado correctamente`,
+                turno: resultado
             });
         }
 
