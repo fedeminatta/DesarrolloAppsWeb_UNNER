@@ -1,42 +1,28 @@
 {
   "name": "app-reservas",
   "version": "1.0.0",
-<<<<<<< HEAD
-  "description": "aplicacion de reservas casa de cumpleaños",
+  "description": "Aplicación de reservas para casa de cumpleaños",
   "main": "src/reservas.js",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "des": "node --watch src/servidor.js"
   },
-  "author": "",
+  "author": "Grupo Q",
   "license": "ISC",
   "dependencies": {
     "dotenv": "^17.2.3",
     "express": "^5.1.0",
     "express-validator": "^7.3.0",
     "handlebars": "^4.7.8",
-    "mysql2": "^3.15.3",
-    "nodemailer": "^7.0.9"
-=======
-  "description": "Aplicación de reservas para casa de cumpleaños",
-  "main": "index.js",
-  "type": "module",
-  "scripts": {
-    "start": "node index.js",
-    "dev": "node --watch index.js"
-  },
-  "author": "Grupo Q",
-  "license": "ISC",
-  "dependencies": {
-    "dotenv": "^16.3.1",
-    "express": "^5.1.0",
-    "handlebars": "^4.7.8",
     "json2csv": "^6.0.0-alpha.2",
+    "jsonwebtoken": "^9.0.2",
     "mysql2": "^3.15.3",
     "node-fetch": "^3.3.2",
-    "nodemailer": "^7.0.6",
+    "nodemailer": "^7.0.9",
+    "passport": "^0.7.0",
+    "passport-jwt": "^4.0.1",
+    "passport-local": "^1.0.0",
     "pdfkit": "^0.17.2"
->>>>>>> main
   }
 }
