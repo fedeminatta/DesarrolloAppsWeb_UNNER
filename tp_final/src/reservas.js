@@ -1,18 +1,18 @@
 import express from 'express';
-import {router as salonesRutas} from './rutas/salonesRutas.js';
-import {router as serviciosRutas} from './rutas/serviciosRutas.js';
-import {router as turnosRutas} from './rutas/turnosRutas.js';
-import {router as reservasRutas} from './rutas/reservasRutas.js'
+import { router as salonesRutas } from './rutas/salonesRutas.js';
+import { router as serviciosRutas } from './rutas/serviciosRutas.js';
+import { router as turnosRutas } from './rutas/turnosRutas.js';
+import { router as reservasRutas } from './rutas/reservasRutas.js';
+import { router as reportesRutas } from './v1/rutas/reportesRutas.js';
 const app = express();
 app.use(express.json());
 
-app.use('/api/salones',salonesRutas);
+app.use('/api/salones', salonesRutas);
 
 app.use('/api/servicios', serviciosRutas);
 
 app.use('/api/turnos', turnosRutas);
 
-app.use('/api/reservas',reservasRutas)
-export default app
-
-
+app.use('/api/reservas', reservasRutas);
+app.use('/api/reportes', reportesRutas);
+export default app;
