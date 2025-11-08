@@ -27,11 +27,11 @@ export default class SalonesControlador{
         }
     }
     
-    buscarSalonPorId = async(req,res) =>{
+    buscarPorId = async(req,res) =>{
         try{
 
         const salon_id = req.params.salon_id;
-        const salon = await this.salonesServicio.buscarSalonPorId(salon_id);
+        const salon = await this.salonesServicio.buscarPorId(salon_id);
 
         if(salon){
             res.json({

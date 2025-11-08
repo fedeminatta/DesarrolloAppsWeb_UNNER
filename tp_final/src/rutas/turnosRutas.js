@@ -10,7 +10,7 @@ const router = express.Router();
 router.get('/', turnosControlador.buscarTodos);
 router.get('/:turno_id', turnosControlador.buscarPorId);
 router.post('/', [
-    check('orden','La orden es necesaria.').notEmpty(),
+    check('orden','La orden es necesaria.').notEmpty().isNumeric(),
     check('hora_desde', 'La hora es necesaria').notEmpty(),
     check('hora_hasta', 'La hora es necesaria.').notEmpty(),
     validarCampos

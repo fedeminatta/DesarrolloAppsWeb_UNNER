@@ -26,11 +26,11 @@ export default class ServiciosControlador{
         }
     };
 
-    buscarServicioPorId = async(req,res) =>{
+    buscarPorId = async(req,res) =>{
         try{
 
             const servicio_id = req.params.servicio_id;
-            const servicio = await this.serviciosServicio.buscarServicioPorId(servicio_id);
+            const servicio = await this.serviciosServicio.buscarPorId(servicio_id);
 
             if(servicio){
                 res.json({

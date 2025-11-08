@@ -8,7 +8,7 @@ const router = express.Router();
 
 
 router.get('/', serviciosControlador.buscarTodos);
-router.get('/:servicio_id', serviciosControlador.buscarServicioPorId);
+router.get('/:servicio_id', serviciosControlador.buscarPorId);
 router.post('/', [
     check('descripcion','La descripción es necesaria.').notEmpty(),
     check('importe', 'El importe es necesario y debe ser numérico').notEmpty().isNumeric(),

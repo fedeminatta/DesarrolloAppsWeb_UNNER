@@ -8,7 +8,7 @@ export default class Salones{
             return salones;
         };
 
-    buscarSalonPorId = async(salon_id) => {
+    buscarPorId = async(salon_id) => {
         const sql = 'SELECT  * FROM salones WHERE salon_id = ? AND activo = 1';
                 const [salon] = await conexion.execute(sql, [salon_id]);
 
@@ -36,7 +36,7 @@ export default class Salones{
                 return null;
             };
 
-            return this.buscarSalonPorId(resultado.insertId);
+            return this.buscarPorId(resultado.insertId);
         };
 
     // editar = async(salon_id,datosSalon) => {
@@ -60,7 +60,7 @@ export default class Salones{
     //                 return null;
     //             };
 
-    //             return this.buscarSalonPorId(salon_id);
+    //             return this.buscarPorId(salon_id);
 
     // };
 
@@ -79,7 +79,7 @@ export default class Salones{
         if (resultado.affectedRows === 0){
             return null;
         }
-        return this.buscarSalonPorId(salon_id);
+        return this.buscarPorId(salon_id);
     }
 
 
