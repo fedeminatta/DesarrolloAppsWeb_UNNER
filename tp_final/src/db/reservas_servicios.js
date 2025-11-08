@@ -2,10 +2,10 @@ import { conexion } from "./conexion.js";
 
 export default class ReservasServicios{
     
-    crear = async(reserva_id,servicios) =>{
+    agregar = async(reserva_id,servicios) =>{
         try{
 
-            await conexion.beninTransaction();
+            await conexion.beginTransaction();
 
             for(const servicio of servicios){
                 const sql = 'INSERT INTO reservas_servicios (reserva_id, servicio_id, importe) VALUES (?,?,?)';

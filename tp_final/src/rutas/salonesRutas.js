@@ -8,13 +8,11 @@ const salonesControlador = new SalonesControlador();
 const router = express.Router();
 
 router.get('/', salonesControlador.buscarTodos);
-router.get('/:salon_id', salonesControlador.buscarSalonPorId);
+router.get('/:salon_id', salonesControlador.buscarPorId);
 router.put('/:id',salonesControlador.editar);
 router.post('/', [
     check('titulo','El titulo es necesario.').notEmpty(),
     check('direccion','La dirección es necesaria.').notEmpty(),
-    //check('latitud','La latitud es necesaria y debe ser numérica.').notEmpty().isNumeric(),
-    //check('longitud','La longitud es necesaria y debe ser numérica.').notEmpty().isNumeric(),
     check('capacidad','La capacidad es necesaria y debe ser numérica.').notEmpty().isNumeric(),
     check('importe', 'El importe es necesario y debe ser numérico').notEmpty().isNumeric(),
     validarCampos

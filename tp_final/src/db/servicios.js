@@ -8,7 +8,7 @@ export default class Servicios {
         return servicios;
     };
 
-    buscarServicioPorId = async(servicio_id) => {
+    buscarPorId = async(servicio_id) => {
         const sql = 'SELECT  * FROM servicios WHERE servicio_id = ? AND activo = 1';
                 const [servicio] = await conexion.execute(sql, [servicio_id]);
 
@@ -32,7 +32,7 @@ export default class Servicios {
                 return null;
             };
 
-            return this.buscarServicioPorId(resultado.insertId);
+            return this.buscarPorId(resultado.insertId);
         };
 
     editar = async(servicio_id,datosServicios) =>{
@@ -50,7 +50,7 @@ export default class Servicios {
         if (resultado.affectedRows === 0){
             return null;
         }
-        return this.buscarServicioPorId(servicio_id);
+        return this.buscarPorId(servicio_id);
     }
 
 
