@@ -7,6 +7,7 @@ import {router as turnosRutas} from './rutas/turnosRutas.js';
 import {router as reservasRutas} from './rutas/reservasRutas.js';
 import {router as usuariosRutas} from './rutas/usuariosRutas.js';
 import {router as authRutas} from './rutas/authRutas.js';
+import { router as reportesRutas } from './v1/rutas/reportesRutas.js';
 
 const app = express();
 app.use(express.json());
@@ -21,17 +22,10 @@ app.use('/api/auth', authRutas);
 const autenticacionJWT = passport.authenticate('jwt', {session:false});
 
 app.use('/api/salones', autenticacionJWT,salonesRutas);
-
 app.use('/api/servicios', autenticacionJWT,serviciosRutas);
-
 app.use('/api/turnos', autenticacionJWT,turnosRutas);
-
 app.use('/api/reservas', autenticacionJWT,reservasRutas)
-
 app.use('/api/usuarios', autenticacionJWT,usuariosRutas);
-
-
+app.use('/api/reportes', autenticacionJWT,reportesRutas);
 
 export default app
-
-
