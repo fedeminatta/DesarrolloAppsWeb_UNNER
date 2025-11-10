@@ -1,14 +1,16 @@
 #### Agregar un .env con las siguientes variables
 
-HOST = "localhost"
-USER = "tu usuario"
-PASSWORD = "tu contraseña"
-DATABASE = "nombre bd"
-PUERTO = 3000 (o el puerto donde quieras iniciarlo)
-
-USER_EMAIL=tucorreo@gmail.com
-PASS_EMAIL=pass app email
-DEST_EMAIL=passdestino@gmail.com
+```
+    HOST = "localhost"
+    USER = "tu usuario"
+    PASSWORD = "tu contraseña"
+    DATABASE = "nombre bd"
+    PUERTO = 3000 (o el puerto donde quieras iniciarlo)
+    
+    USER_EMAIL=tucorreo@gmail.com
+    PASS_EMAIL=pass app email
+    DEST_EMAIL=passdestino@gmail.com
+```
 
 #### url Swagger
 
