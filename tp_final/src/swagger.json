@@ -1,0 +1,823 @@
+{
+	"swagger": "2.0",
+	"info": {
+		"title": "API de reservas de cumpleaños",
+		"description": "Esta api permite gestionar la creación de salones, servicios y reservas.",
+		"version": "1.0.0"
+	},
+	"host": "localhost:3000",
+	"basePath": "/",
+	"schemes": ["http"],
+	"paths": {
+		"/api/auth/login": {
+			"post": {
+				"description": "",
+				"responses": {
+					"200": {
+						"description": "OK"
+					},
+					"400": {
+						"description": "Bad Request"
+					},
+					"500": {
+						"description": "Internal Server Error"
+					}
+				}
+			}
+		},
+		"/api/salones/": {
+			"get": {
+				"description": "",
+				"responses": {
+					"200": {
+						"description": "OK"
+					},
+					"500": {
+						"description": "Internal Server Error"
+					}
+				}
+			},
+			"post": {
+				"description": "",
+				"responses": {
+					"201": {
+						"description": "Created"
+					},
+					"400": {
+						"description": "Bad Request"
+					},
+					"404": {
+						"description": "Not Found"
+					},
+					"500": {
+						"description": "Internal Server Error"
+					}
+				}
+			}
+		},
+		"/api/salones/{salon_id}": {
+			"get": {
+				"description": "",
+				"parameters": [
+					{
+						"name": "salon_id",
+						"in": "path",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK"
+					},
+					"404": {
+						"description": "Not Found"
+					},
+					"500": {
+						"description": "Internal Server Error"
+					}
+				}
+			}
+		},
+		"/api/salones/{id}": {
+			"put": {
+				"description": "",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK"
+					},
+					"404": {
+						"description": "Not Found"
+					},
+					"500": {
+						"description": "Internal Server Error"
+					}
+				}
+			},
+			"delete": {
+				"description": "",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK"
+					},
+					"404": {
+						"description": "Not Found"
+					},
+					"500": {
+						"description": "Internal Server Error"
+					}
+				}
+			}
+		},
+		"/api/servicios/": {
+			"get": {
+				"description": "",
+				"responses": {
+					"default": {
+						"description": ""
+					}
+				}
+			},
+			"post": {
+				"description": "",
+				"responses": {
+					"400": {
+						"description": "Bad Request"
+					}
+				}
+			}
+		},
+		"/api/servicios/{servicio_id}": {
+			"get": {
+				"description": "",
+				"responses": {
+					"default": {
+						"description": ""
+					}
+				}
+			}
+		},
+		"/api/servicios/{id}": {
+			"put": {
+				"description": "",
+				"responses": {
+					"default": {
+						"description": ""
+					}
+				}
+			},
+			"delete": {
+				"description": "",
+				"responses": {
+					"default": {
+						"description": ""
+					}
+				}
+			}
+		},
+		"/api/turnos/": {
+			"get": {
+				"description": "",
+				"responses": {
+					"default": {
+						"description": ""
+					}
+				}
+			},
+			"post": {
+				"description": "",
+				"responses": {
+					"400": {
+						"description": "Bad Request"
+					}
+				}
+			}
+		},
+		"/api/turnos/{turno_id}": {
+			"get": {
+				"description": "",
+				"responses": {
+					"default": {
+						"description": ""
+					}
+				}
+			}
+		},
+		"/api/turnos/{id}": {
+			"put": {
+				"description": "",
+				"responses": {
+					"default": {
+						"description": ""
+					}
+				}
+			},
+			"delete": {
+				"description": "",
+				"responses": {
+					"default": {
+						"description": ""
+					}
+				}
+			}
+		},
+		"/api/reservas/": {
+			"get": {
+				"description": "",
+				"responses": {
+					"200": {
+						"description": "OK"
+					},
+					"500": {
+						"description": "Internal Server Error"
+					}
+				}
+			},
+			"post": {
+				"description": "",
+				"parameters": [
+					{
+						"name": "body",
+						"in": "body",
+						"schema": {
+							"type": "object",
+							"properties": {
+								"fecha_reserva": {
+									"example": "any"
+								},
+								"salon_id": {
+									"example": "any"
+								},
+								"usuario_id": {
+									"example": "any"
+								},
+								"turno_id": {
+									"example": "any"
+								},
+								"fotoCumplianiero": {
+									"example": "any"
+								},
+								"tematica": {
+									"example": "any"
+								},
+								"importeSalon": {
+									"example": "any"
+								},
+								"importeTotal": {
+									"example": "any"
+								},
+								"servicios": {
+									"example": "any"
+								}
+							}
+						}
+					}
+				],
+				"responses": {
+					"201": {
+						"description": "Created"
+					},
+					"400": {
+						"description": "Bad Request"
+					},
+					"404": {
+						"description": "Not Found"
+					},
+					"500": {
+						"description": "Internal Server Error"
+					}
+				}
+			}
+		},
+		"/api/reservas/{reserva_id}": {
+			"get": {
+				"description": "",
+				"parameters": [
+					{
+						"name": "reserva_id",
+						"in": "path",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK"
+					},
+					"404": {
+						"description": "Not Found"
+					},
+					"500": {
+						"description": "Internal Server Error"
+					}
+				}
+			}
+		},
+		"/api/reservas/{id}": {
+			"put": {
+				"description": "",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK"
+					},
+					"404": {
+						"description": "Not Found"
+					},
+					"500": {
+						"description": "Internal Server Error"
+					}
+				}
+			},
+			"delete": {
+				"description": "",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK"
+					},
+					"404": {
+						"description": "Not Found"
+					},
+					"500": {
+						"description": "Internal Server Error"
+					}
+				}
+			}
+		},
+		"/api/usuarios/": {
+			"get": {
+				"description": "",
+				"responses": {
+					"200": {
+						"description": "OK"
+					},
+					"500": {
+						"description": "Internal Server Error"
+					}
+				}
+			},
+			"post": {
+				"description": "",
+				"responses": {
+					"201": {
+						"description": "Created"
+					},
+					"400": {
+						"description": "Bad Request"
+					},
+					"500": {
+						"description": "Internal Server Error"
+					}
+				}
+			}
+		},
+		"/api/usuarios/{id}": {
+			"get": {
+				"description": "",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK"
+					},
+					"404": {
+						"description": "Not Found"
+					},
+					"500": {
+						"description": "Internal Server Error"
+					}
+				}
+			},
+			"put": {
+				"description": "",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK"
+					},
+					"400": {
+						"description": "Bad Request"
+					},
+					"404": {
+						"description": "Not Found"
+					},
+					"500": {
+						"description": "Internal Server Error"
+					}
+				}
+			},
+			"delete": {
+				"description": "",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK"
+					},
+					"404": {
+						"description": "Not Found"
+					},
+					"500": {
+						"description": "Internal Server Error"
+					}
+				}
+			}
+		},
+		"/api/reportes/estadisticas/salones": {
+			"get": {
+				"description": "",
+				"responses": {
+					"200": {
+						"description": "OK"
+					},
+					"500": {
+						"description": "Internal Server Error"
+					}
+				}
+			}
+		},
+		"/api/reportes/estadisticas/ingresos": {
+			"get": {
+				"description": "",
+				"responses": {
+					"200": {
+						"description": "OK"
+					},
+					"500": {
+						"description": "Internal Server Error"
+					}
+				}
+			}
+		},
+		"/api/reportes/estadisticas/servicios": {
+			"get": {
+				"description": "",
+				"responses": {
+					"200": {
+						"description": "OK"
+					},
+					"500": {
+						"description": "Internal Server Error"
+					}
+				}
+			}
+		},
+		"/api/reportes/exportar/salones/csv": {
+			"get": {
+				"description": "",
+				"responses": {
+					"200": {
+						"description": "OK"
+					},
+					"500": {
+						"description": "Internal Server Error"
+					}
+				}
+			}
+		},
+		"/api/reportes/exportar/salones/pdf": {
+			"get": {
+				"description": "",
+				"produces": ["application/pdf"],
+				"responses": {
+					"500": {
+						"description": "Internal Server Error"
+					}
+				}
+			}
+		},
+		"/api/reportes/enviar/salones/pdf": {
+			"get": {
+				"description": "",
+				"parameters": [
+					{
+						"name": "to",
+						"in": "query",
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK"
+					},
+					"400": {
+						"description": "Bad Request"
+					},
+					"500": {
+						"description": "Internal Server Error"
+					}
+				}
+			}
+		},
+		"/estadisticas/salones": {
+			"get": {
+				"description": "",
+				"responses": {
+					"200": {
+						"description": "OK"
+					},
+					"500": {
+						"description": "Internal Server Error"
+					}
+				}
+			}
+		},
+		"/estadisticas/ingresos": {
+			"get": {
+				"description": "",
+				"responses": {
+					"200": {
+						"description": "OK"
+					},
+					"500": {
+						"description": "Internal Server Error"
+					}
+				}
+			}
+		},
+		"/estadisticas/servicios": {
+			"get": {
+				"description": "",
+				"responses": {
+					"200": {
+						"description": "OK"
+					},
+					"500": {
+						"description": "Internal Server Error"
+					}
+				}
+			}
+		},
+		"/exportar/salones/csv": {
+			"get": {
+				"description": "",
+				"responses": {
+					"200": {
+						"description": "OK"
+					},
+					"500": {
+						"description": "Internal Server Error"
+					}
+				}
+			}
+		},
+		"/exportar/salones/pdf": {
+			"get": {
+				"description": "",
+				"produces": ["application/pdf"],
+				"responses": {
+					"500": {
+						"description": "Internal Server Error"
+					}
+				}
+			}
+		},
+		"/enviar/salones/pdf": {
+			"get": {
+				"description": "",
+				"parameters": [
+					{
+						"name": "to",
+						"in": "query",
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK"
+					},
+					"400": {
+						"description": "Bad Request"
+					},
+					"500": {
+						"description": "Internal Server Error"
+					}
+				}
+			}
+		},
+		"/login": {
+			"post": {
+				"description": "",
+				"responses": {
+					"200": {
+						"description": "OK"
+					},
+					"400": {
+						"description": "Bad Request"
+					},
+					"500": {
+						"description": "Internal Server Error"
+					}
+				}
+			}
+		},
+		"/": {
+			"get": {
+				"description": "",
+				"responses": {
+					"200": {
+						"description": "OK"
+					},
+					"500": {
+						"description": "Internal Server Error"
+					},
+					"default": {
+						"description": ""
+					}
+				}
+			},
+			"post": {
+				"description": "",
+				"responses": {
+					"201": {
+						"description": "Created"
+					},
+					"400": {
+						"description": "Bad Request"
+					},
+					"404": {
+						"description": "Not Found"
+					},
+					"500": {
+						"description": "Internal Server Error"
+					}
+				}
+			}
+		},
+		"/{reserva_id}": {
+			"get": {
+				"description": "",
+				"parameters": [
+					{
+						"name": "reserva_id",
+						"in": "path",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK"
+					},
+					"404": {
+						"description": "Not Found"
+					},
+					"500": {
+						"description": "Internal Server Error"
+					}
+				}
+			}
+		},
+		"/{id}": {
+			"put": {
+				"description": "",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK"
+					},
+					"400": {
+						"description": "Bad Request"
+					},
+					"404": {
+						"description": "Not Found"
+					},
+					"500": {
+						"description": "Internal Server Error"
+					},
+					"default": {
+						"description": ""
+					}
+				}
+			},
+			"delete": {
+				"description": "",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK"
+					},
+					"404": {
+						"description": "Not Found"
+					},
+					"500": {
+						"description": "Internal Server Error"
+					},
+					"default": {
+						"description": ""
+					}
+				}
+			},
+			"get": {
+				"description": "",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK"
+					},
+					"404": {
+						"description": "Not Found"
+					},
+					"500": {
+						"description": "Internal Server Error"
+					}
+				}
+			}
+		},
+		"/{salon_id}": {
+			"get": {
+				"description": "",
+				"parameters": [
+					{
+						"name": "salon_id",
+						"in": "path",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK"
+					},
+					"404": {
+						"description": "Not Found"
+					},
+					"500": {
+						"description": "Internal Server Error"
+					}
+				}
+			}
+		},
+		"/{servicio_id}": {
+			"get": {
+				"description": "",
+				"responses": {
+					"default": {
+						"description": ""
+					}
+				}
+			}
+		},
+		"/{turno_id}": {
+			"get": {
+				"description": "",
+				"responses": {
+					"default": {
+						"description": ""
+					}
+				}
+			}
+		}
+	}
+}

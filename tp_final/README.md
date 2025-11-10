@@ -10,6 +10,10 @@ USER_EMAIL=tucorreo@gmail.com
 PASS_EMAIL=pass app email
 DEST_EMAIL=passdestino@gmail.com
 
+#### url Swagger
+
+http://localhost:3000/doc
+
 #### url de la api
 
 http://localhost:3000/api/
@@ -56,4 +60,5 @@ en postman/bruno/etc agregar en el body > raw
 - Diego Gomez
 
 ### Link del video:
+
 https://drive.google.com/file/d/1xRtcUJVeeC4ugPWt-WW2CpZ0tg9JuHux/view?usp=sharing
