@@ -13,7 +13,7 @@ export default class ReservasControlador{
             res.json({
                 estado: true,
                 datos: reservas
-            })
+            });
 
         }catch(err){
 
@@ -63,7 +63,6 @@ export default class ReservasControlador{
         const { id } = req.params;
         const datosReserva = req.body;
 
-
         const resultado = await this.reservasServicio.editar(id, datosReserva);
         
         if(resultado.affectedRows === 0 ){
@@ -99,10 +98,10 @@ export default class ReservasControlador{
                 salon_id,
                 usuario_id,
                 turno_id,
-                fotoCumplianiero,
+                foto_cumpleaniero,
                 tematica,
-                importeSalon,
-                importeTotal,
+                importe_salon,
+                importe_total,
                 servicios } = req.body;
         //creo el objeto reserva con esos datos
                 const reserva = {
@@ -110,10 +109,10 @@ export default class ReservasControlador{
                     salon_id,
                     usuario_id,
                     turno_id,
-                    fotoCumplianiero,
+                    foto_cumpleaniero,
                     tematica,
-                    importeSalon,
-                    importeTotal,
+                    importe_salon,
+                    importe_total,
                     servicios
                 };
 

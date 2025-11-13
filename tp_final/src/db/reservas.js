@@ -5,7 +5,7 @@ export default class Reservas{
     buscarTodos = async() => {
         const sql = 'SELECT * FROM reservas WHERE activo =1'
         const [reservas] = await conexion.execute(sql);
-        return reservas
+        return reservas;
     };
 
     buscarPorId = async(reserva_id) =>{
@@ -26,10 +26,11 @@ export default class Reservas{
             reserva.salon_id,
             reserva.usuario_id,
             reserva.turno_id,
-            reserva.foto_cumpleaniero ?? null,
-            reserva.tematica ?? null,
-            reserva.importe_salon ?? null,
-            reserva.importe_total ?? null
+            reserva.foto_cumpleaniero,
+            reserva.tematica,
+            reserva.importe_salon,
+            reserva.importe_total,
+            
   ];
         
         
@@ -92,7 +93,6 @@ export default class Reservas{
     datosParaNotificacion = async(reserva_id) =>{
         
         const sql = 'SELECT r.fecha_reserva as fecha, s.titulo as salon, t.orden as turno FROM reservas as r INNER JOIN salones as s on s.salon_id = r.salon_id INNER JOIN turnos as t on t.turno_id = r.turno_id WHERE r.activo = 1 and r.reserva_id = ?';
-
         const[reserva] = await conexion.execute(sql,[reserva_id]);
         if(reserva.length === 0){
             return null;

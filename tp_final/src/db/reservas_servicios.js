@@ -9,17 +9,16 @@ export default class ReservasServicios{
 
             for(const servicio of servicios){
                 const sql = 'INSERT INTO reservas_servicios (reserva_id, servicio_id, importe) VALUES (?,?,?)';
-                conexion.execute(sql,[ reserva_id,servicio.servicio_id, servicio.importe]);    
+                await conexion.execute(sql,[ reserva_id,servicio.servicio_id, servicio.importe]);    
             };
 
             await conexion.commit();
-
             return true;
 
 
         }catch(err){
             await conexion.rollback();
-            console.log(`error ${err}`);
+            console.log(`error reservas_servicios.agregar ${err}`);
             return false;
         };
         

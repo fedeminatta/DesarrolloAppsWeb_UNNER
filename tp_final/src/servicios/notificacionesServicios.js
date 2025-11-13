@@ -7,22 +7,21 @@ import {readFile} from 'fs/promises'
 
 
 export default class Notificacion {
-
+	
     enviarCorreo = async(datosCorreo) =>{
-     
-        const{fecha, salon, turno, correoDestino} = datosCorreo;
+		
+        const{fecha, salon, turno, correoDestino = process.env.DEST_EMAIL} = datosCorreo;
 
         if (!fecha || !salon || !turno || !correoDestino) {
-		return {
-            estado: false, 
-            mensaje: 'Faltan datos obligatorios'
-	};
-        }
-			
+			return {
+            	estado: false, 
+            	mensaje: 'Faltan datos obligatorios'
+			};
+        };
 
-    try {
+		try{
 
-		const __filename = fileURLToPath(import.meta.url);
+			const __filename = fileURLToPath(import.meta.url);
 		const __dirname = path.dirname(__filename);
 		const plantilla = path.join(__dirname, '../utiles/handlebars/plantilla.hbs');
 
@@ -33,38 +32,33 @@ export default class Notificacion {
 		const transporter = nodemailer.createTransport({
 			service: 'gmail',
 			auth: {
-				user: process.env.USER,
-				pass: process.env.PASS,
+				user: process.env.USER_EMAIL,
+				pass: process.env.PASS_EMAIL,
 			},
 		});
 
 		const opciones = {
-			to: 'lurdesv1996@gmail.com',
-			subject: 'Notificación',
+			from: process.env.USER_EMAIL,
+			to: correoDestino,
+			subject: 'Notificación de reserva.',
+			cc: process.env.ADMIN_EMAIL,
 			html,
 		};
+		
+       const info = await transporter.sendMail(opciones);
+			
+				return { 
+                    estado: true, 
+                    mensaje: 'Correo enviado.',
+					info
+			    };
 
-        transporter.sendMail(opciones, (error) => {
-			if (error) {
-				return res.json({ 
-                    ok: false, 
-                    mensaje: 'Error al enviar el correo.' });
-			    }
-			res.json({ 
-                ok: true, 
-                mensaje: 'Correo enviado.' 
-            });
-		});
-	} catch (error) {
-
-		console.log(error);
-		res.status(500).json({ 
-            ok: false, 
-            mensaje: 'Error interno del servidor.' });
-	}
-    }
+		} catch(error){
+			console.error('Error al enviar el correo.');
+			return{
+				estado: false,
+				mensaje: `Error interno al enviar el correo: ${error}`
+			};
+		};	
+	};
 }
-
-
-
-

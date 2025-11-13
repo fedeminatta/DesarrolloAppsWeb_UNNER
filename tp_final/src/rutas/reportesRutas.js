@@ -1,11 +1,10 @@
-// src/v1/rutas/reportesRutas.js
 import express from 'express';
 import {
 	obtenerEstadisticasSalones,
 	obtenerIngresosPorMes,
 	obtenerServiciosMasUsados,
 	enviarReportePorCorreo,
-} from '../../servicios/reportesServicio.js';
+} from '../servicios/reportesServicio.js';
 
 import { Parser } from 'json2csv';
 import PDFDocument from 'pdfkit';

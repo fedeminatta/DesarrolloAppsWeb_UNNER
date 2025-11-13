@@ -250,16 +250,16 @@
 								"turno_id": {
 									"example": "any"
 								},
-								"fotoCumplianiero": {
+								"foto_cumpleaniero": {
 									"example": "any"
 								},
 								"tematica": {
 									"example": "any"
 								},
-								"importeSalon": {
+								"importe_salon": {
 									"example": "any"
 								},
-								"importeTotal": {
+								"importe_total": {
 									"example": "any"
 								},
 								"servicios": {

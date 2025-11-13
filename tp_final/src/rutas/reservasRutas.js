@@ -22,7 +22,16 @@ router.post('/', [
     validarCampos
 ],
 reservasControlador.agregar);
-router.put('/:id',reservasControlador.editar);
+router.put('/:id', [
+    check('fecha_reserva', 'Debe ingresar una fecha válida (YYYY-MM-DD)').optional().isDate(),
+    check('salon_id', 'El salón es necesario').optional().isInt(),
+    check('usuario_id','El usuario es necesario.').optional().isInt(),
+    check('foto_cumpleaniero').optional(),
+    check('turno_id', 'El turno es necesario').optional().isInt(),
+    check('servicios','Faltan los servicios de la reserva.').optional().isArray(),
+    check('servicios.*.importe').optional().isNumeric().withMessage('El importe debe ser numérico'),
+    validarCampos
+    ],reservasControlador.editar);
 router.delete('/:id',reservasControlador.eliminar);
 
 

@@ -48,17 +48,20 @@ export default class ReservasServicio {
             }
         
         //creo las relaciones reservas_-servicios
-            const relacionReservasServicios = await this.reservas_servicios.agregar(resultado.reserva_id,servicios);
-            console.log(relacionReservasServicios)
+            const relacionOk = await this.reservas_servicios.agregar(resultado.reserva_id,servicios);
+            console.log(relacionOk);
+
+            if(!relacionOk){
+                await this.reserva.eliminar(reserva.reserva_id);
+                return null;
+            }
         //busco y envío los datos de notificación
             const datosParaNotificacion = await this.reserva.datosParaNotificacion(resultado.reserva_id);
 
             console.log(datosParaNotificacion)
 
-        await this.notificacion.enviarCorreo(datosParaNotificacion);
-
-        return this.reserva.buscarPorId(resultado.reserva_id);
-
+            await this.notificacion.enviarCorreo(datosParaNotificacion);
+            return this.reserva.buscarPorId(resultado.reserva_id);
         
     }
 

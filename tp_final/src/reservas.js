@@ -8,7 +8,8 @@ import { router as turnosRutas } from './rutas/turnosRutas.js';
 import { router as reservasRutas } from './rutas/reservasRutas.js';
 import { router as usuariosRutas } from './rutas/usuariosRutas.js';
 import { router as authRutas } from './rutas/authRutas.js';
-import { router as reportesRutas } from './v1/rutas/reportesRutas.js';
+import { router as reportesRutas } from './rutas/reportesRutas.js';
+
 
 import swaggerUI from 'swagger-ui-express';
 import fs from 'fs';
