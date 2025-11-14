@@ -1,27 +1,27 @@
-// src/servicios/reportesServicio.js
-import { conexion } from '../db/conexion.js';
+import { 
+  dbobtenerEstadisticasSalones,
+  dbobtenerIngresosPorMes,
+  dbobtenerServiciosMasUsados 
+} from '../db/reportes.js';
+
 import PDFDocument from 'pdfkit';
 import nodemailer from 'nodemailer';
 import fs from 'fs';
 
-// =========================================
-// PROCEDIMIENTOS ALMACENADOS (ESTADÍSTICAS)
-// =========================================
+//PROCEDIMIENTOS ALMACENADOS (ESTADÍSTICAS)
+export const obtenerEstadisticasSalones =async () => {
+  return await dbobtenerEstadisticasSalones();
+}
 
-export const obtenerEstadisticasSalones = async () => {
-  const [rows] = await conexion.query('CALL sp_reservas_por_salon()');
-  return rows[0];
-};
-
-export const obtenerIngresosPorMes = async () => {
-  const [rows] = await conexion.query('CALL sp_ingresos_por_mes()');
-  return rows[0];
-};
+export const obtenerIngresosProMes = async () => {
+  return await dbobtenerIngresosPorMes();
+}
 
 export const obtenerServiciosMasUsados = async () => {
-  const [rows] = await conexion.query('CALL sp_servicios_mas_usados()');
-  return rows[0];
-};
+  return await dbobtenerServiciosMasUsados();
+}
+
+
 
 // =========================================
 // FUNCIONALIDAD EXTRA: ENVÍO DE REPORTE POR CORREO
@@ -30,8 +30,7 @@ export const obtenerServiciosMasUsados = async () => {
 export const enviarReportePorCorreo = async (destinatario = process.env.DEST_EMAIL) => {
   try {
     // Obtener datos del procedimiento almacenado
-    const [result] = await conexion.query('CALL sp_reservas_por_salon()');
-    const rows = result[0];
+    const rows = await dbobtenerEstadisticasSalones();
 
     // Generar nombre del PDF con fecha y hora
     const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
