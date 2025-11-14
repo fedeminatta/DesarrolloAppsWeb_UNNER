@@ -12,13 +12,31 @@ export default class SalonesServicio{
 		return this.salones.buscarPorId(salon_id);
 	};
 
-    agregar =(datosSalon) => {
-		return this.salones.agregar(datosSalon);
+
+
+    agregar = async (datosSalon) => {
+
+        const {titulo} = datosSalon;
+
+        const existe = await this.salones.existeTitulo(titulo);
+        if(existe){
+            return {estado: false};
+        };
+
+		const resultado = await this.salones.agregar(datosSalon);
+        return resultado
 	};
 
-	editar = (salon_id,datosSalon) =>{
+	editar = async (salon_id,datosSalon) =>{
         //verificar si existe
-        const existe = this.salones.buscarPorId(salon_id);
+        const existe = await this.salones.buscarPorId(salon_id);
+        const {titulo} = datosSalon;
+
+        const existeTitulo = await this.salones.existeTitulo(titulo);
+        if(existeTitulo){
+            return {estado: false};
+        };
+
         
         if(!existe){
             return null;

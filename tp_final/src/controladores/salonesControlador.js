@@ -60,11 +60,16 @@ export default class SalonesControlador{
 
         const datosSalon = req.body;
         const resultado = await this.salonesServicio.agregar(datosSalon);
-        
         if(!resultado){
             return res.status(404).json({
                 estado:false,
                 mensaje:'Salón no creado.'
+            });
+        };
+        if(resultado.estado === false){
+            return res.status(409).json({
+                estado:false,
+                mensaje: 'El salón ya existe'
             });
         };
 
@@ -82,7 +87,7 @@ export default class SalonesControlador{
             });
         };
     };
-    // ver que el salon que se cree no se repita
+
     //ver que si se pone un campo que no exista devuelva el error y no cree el salon nuevo
 
     editar = async(req,res) =>{
@@ -98,6 +103,12 @@ export default class SalonesControlador{
             res.status(404).json({
                 estado: false,
                 mensaje: 'El salón no se pudo modificar.'
+            });
+        }
+        if(resultado.estado === false){
+            return res.status(409).json({
+                estado:false,
+                mensaje: 'El salón ya existe'
             });
         }else{
             res.json({

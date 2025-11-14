@@ -18,8 +18,20 @@ export default class Salones{
 
                 return salon[0];
     }
-    
+// verificamos si existe un registro con el mismo nombre
+    existeTitulo = async (titulo, salon_id = null) => {
+    const sql = 'SELECT * FROM salones WHERE LOWER(titulo) = LOWER(?) AND activo = 1';
+    const [resultado] = await conexion.execute(sql, [titulo]);
+    return resultado.length > 0;
+};
+
+
     agregar = async (datosSalon) => {
+
+            const existeDuplicado = await this.existeTitulo(datosSalon.titulo);
+            if(existeDuplicado){
+                return null
+            };
 
             const sql = 'INSERT INTO salones (titulo, direccion, latitud, longitud, capacidad, importe, activo) VALUES (?,?,?,?,?,?,1)';
             const valores = [
@@ -35,36 +47,18 @@ export default class Salones{
             if(resultado.affectedRows === 0){
                 return null;
             };
+            
 
             return this.buscarPorId(resultado.insertId);
         };
 
-    // editar = async(salon_id,datosSalon) => {
-
-    //     const sql = `UPDATE salones SET titulo = ?, direccion = ?, latitud = ?, longitud = ?, capacidad = ?, importe = ? 
-    //             WHERE salon_id = ? AND activo = 1 `;
-    //             const  valores = [
-    //                 datosSalon.titulo,
-    //                 datosSalon.direccion,
-    //                 datosSalon.latitud,
-    //                 datosSalon.longitud,
-    //                 datosSalon.capacidad,
-    //                 datosSalon.importe,
-    //                 datosSalon.salon_id
-    //             ];
-
-    //             console.log("Datos que llegan al editar:", valores);
-    //             const [resultado] = await conexion.execute(sql, valores);
-
-    //             if (resultado.affectedRows === 0){
-    //                 return null;
-    //             };
-
-    //             return this.buscarPorId(salon_id);
-
-    // };
 
     editar = async(salon_id,datosSalon) =>{
+
+        const existeDuplicado = await this.existeTitulo(datosSalon.titulo);
+            if(existeDuplicado){
+                return null
+            };
         
         const camposAActualizar = Object.keys(datosSalon);
         const valoresAActualizar = Object.values(datosSalon);
