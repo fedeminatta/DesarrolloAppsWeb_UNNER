@@ -37,12 +37,12 @@ reservasControlador.agregar);
 router.put('/:id', 
     autorizarUsuarios(ROL_ADMIN),
     [
-        check().custom(body => {
-            if (Object.keys(body).length === 0) {
-                throw new Error('El cuerpo de la solicitud no puede estar vacio');
-            }
-            return true;
-        }),
+      check().custom((value, { req }) => {
+        if (!req.body || Object.keys(req.body).length === 0) {
+            throw new Error('El cuerpo de la solicitud no puede estar vacío');
+        }
+        return true;
+    }),
     check('fecha_reserva', 'Debe ingresar una fecha válida (YYYY-MM-DD)').optional().isDate(),
     check('salon_id', 'El salón es necesario').optional().isInt(),
     check('usuario_id','El usuario es necesario.').optional().isInt(),
