@@ -13,7 +13,7 @@ export const obtenerEstadisticasSalones =async () => {
   return await dbobtenerEstadisticasSalones();
 }
 
-export const obtenerIngresosProMes = async () => {
+export const obtenerIngresosPorMes = async () => {
   return await dbobtenerIngresosPorMes();
 }
 
