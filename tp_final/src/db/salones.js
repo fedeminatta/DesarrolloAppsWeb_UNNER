@@ -55,11 +55,6 @@ export default class Salones{
 
     editar = async(salon_id,datosSalon) =>{
 
-        const existeDuplicado = await this.existeTitulo(datosSalon.titulo);
-            if(existeDuplicado){
-                return null
-            };
-        
         const camposAActualizar = Object.keys(datosSalon);
         const valoresAActualizar = Object.values(datosSalon);
 

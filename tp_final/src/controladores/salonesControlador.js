@@ -99,17 +99,12 @@ export default class SalonesControlador{
 
         const resultado = await this.salonesServicio.editar(id, datosSalon);
         
-        if(resultado.affectedRows === 0 ){
+        if(!resultado){
             res.status(404).json({
                 estado: false,
-                mensaje: 'El salón no se pudo modificar.'
+                mensaje: 'El salón no existe.'
             });
-        }
-        if(resultado.estado === false){
-            return res.status(409).json({
-                estado:false,
-                mensaje: 'El salón ya existe'
-            });
+        
         }else{
             res.json({
                 estado: true,
