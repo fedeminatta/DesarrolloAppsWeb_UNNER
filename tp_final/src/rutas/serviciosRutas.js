@@ -3,6 +3,7 @@ import { check } from 'express-validator';
 import ServiciosControlador from '../controladores/serviciosControlador.js';
 import {validarCampos} from '../middlewares/validarCampos.js';
 import autorizarUsuarios from '../middlewares/autorizarUsuarios.js';
+import { CamposPermitidos } from '../middlewares/validarCamposPermitidos.js';
 
 const serviciosControlador = new ServiciosControlador;
 const router = express.Router();
@@ -24,11 +25,27 @@ router.post('/',
     [
     check('descripcion','La descripción es necesaria.').notEmpty(),
     check('importe', 'El importe es necesario y debe ser numérico').notEmpty().isNumeric(),
-    validarCampos
+    validarCampos,
+    CamposPermitidos([
+        'descripcion',
+        'importe'
+    ])
+    
 ],
     serviciosControlador.agregar);
 
-router.put('/:id', autorizarUsuarios(ROL_ADMIN_EMPLEADO),serviciosControlador.editar)
+router.put('/:id', autorizarUsuarios(ROL_ADMIN_EMPLEADO),
+[
+    check('descripcion','La descripción es necesaria.').optional().notEmpty(),
+    check('importe', 'El importe es necesario y debe ser numérico').optional().notEmpty().isNumeric(),
+    validarCampos,
+    CamposPermitidos([
+        'descripcion',
+        'importe'
+    ])
+
+    
+],serviciosControlador.editar)
 
 router.delete('/:id',autorizarUsuarios(ROL_ADMIN_EMPLEADO),serviciosControlador.eliminar);
 

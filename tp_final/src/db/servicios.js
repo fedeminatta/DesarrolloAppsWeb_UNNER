@@ -19,7 +19,19 @@ export default class Servicios {
                 return servicio[0];
     };
 
+    // verificamos si existe un registro con el mismo nombre
+    existe = async (descripcion) => {
+    const sql = 'SELECT * FROM servicios WHERE LOWER(descripcion) = LOWER(?) AND activo = 1';
+    const [resultado] = await conexion.execute(sql, [descripcion]);
+    return resultado.length > 0;
+    };
+
     agregar = async (datosServicios) => {
+
+            const existeDuplicado = await this.existe(datosServicios.descripcion);
+            if(existeDuplicado){
+                return null
+            };
 
             const sql = 'INSERT INTO servicios (descripcion, importe) VALUES (?,?)';
             const valores = [

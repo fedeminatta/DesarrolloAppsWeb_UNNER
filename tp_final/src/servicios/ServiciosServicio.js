@@ -14,8 +14,15 @@ export default class Serviciosservicio{
 		return this.servicios.buscarPorId(servicio_id);
 	};
 
-    agregar =(datosServicios) => {
-		return this.servicios.agregar(datosServicios);
+    agregar = async (datosServicios) => {
+        const {descripcion} = datosServicios;
+
+        const existe = await this.servicios.existe(descripcion);
+        if(existe){
+            return {estado: false}
+        };
+
+		return await this.servicios.agregar(datosServicios);
 	};
 
     editar = (servicio_id,datosServicios) =>{

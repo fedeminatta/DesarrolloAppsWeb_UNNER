@@ -66,6 +66,13 @@ export default class ServiciosControlador{
             });
         };
 
+        if(resultado.estado === false){
+            return res.status(409).json({
+                estado:false,
+                mensaje: 'El servicio ya existe'
+            });
+        };
+
         res.status(201).json({
             estado: true,
             mensaje: 'Servicio agregado correctamente',
@@ -90,10 +97,10 @@ export default class ServiciosControlador{
 
         const resultado = await this.serviciosServicio.editar(id, datosServicios);
         
-        if(resultado.affectedRows === 0 ){
+        if(!resultado){
             res.status(404).json({
                 estado: false,
-                mensaje: 'El servicio no se pudo modificar.'
+                mensaje: 'El servicio no existe.'
             });
         }else{
             res.json({

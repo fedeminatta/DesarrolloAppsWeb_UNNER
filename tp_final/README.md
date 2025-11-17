@@ -1,3 +1,5 @@
+#### Link del Video Actualizado Recuperatorio: https://drive.google.com/file/d/1Z5s4FWPKAOZcQPztnJd0ho7Js0Fm2Wy_/view?usp=sharing
+
 #### Agregar un .env con las siguientes variables
 
 ```
@@ -61,6 +63,3 @@ en postman/bruno/etc agregar en el body > raw
 - Lurdes Micaela Velarde
 - Diego Gomez
 
-### Link del video:
-
-https://drive.google.com/file/d/1xRtcUJVeeC4ugPWt-WW2CpZ0tg9JuHux/view?usp=sharing

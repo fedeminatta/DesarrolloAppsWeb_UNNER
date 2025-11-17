@@ -3,7 +3,7 @@ import { check } from 'express-validator';
 import {validarCampos} from '../middlewares/validarCampos.js';
 import ReservasControlador from '../controladores/reservasControlador.js'
 import autorizarUsuarios from '../middlewares/autorizarUsuarios.js';
-
+import { CamposPermitidos } from '../middlewares/validarCamposPermitidos.js';
 
 const router = express.Router();
 const reservasControlador = new ReservasControlador();
@@ -27,10 +27,23 @@ router.post('/', [
     check('salon_id', 'El salón es necesario').notEmpty().isInt(),
     check('usuario_id','El usuario es necesario.').notEmpty().isInt(),
     check('foto_cumpleaniero').optional(),
+    check('tematica','La tematica es necesaria').optional().notEmpty(),
     check('turno_id', 'El turno es necesario').notEmpty().isInt(),
     check('servicios','Faltan los servicios de la reserva.').notEmpty().isArray(),
     check('servicios.*.importe').isNumeric().withMessage('El importe debe ser numérico'),
-    validarCampos
+    validarCampos,
+    CamposPermitidos([
+        'fecha_reserva',
+        'salon_id',
+        'usuario_id',
+        'foto_cumpleaniero',
+        'tematica',
+        'turno_id',
+        'importe_salon',
+        'importe_total',
+        'servicios'
+
+    ])
 ],
 reservasControlador.agregar);
 //Valida si el cuerpo no viene vacio
@@ -47,10 +60,23 @@ router.put('/:id',
     check('salon_id', 'El salón es necesario').optional().isInt(),
     check('usuario_id','El usuario es necesario.').optional().isInt(),
     check('foto_cumpleaniero').optional(),
+    check('tematica','La tematica es necesaria').optional().notEmpty(),
     check('turno_id', 'El turno es necesario').optional().isInt(),
     check('servicios','Faltan los servicios de la reserva.').optional().isArray(),
     check('servicios.*.importe').optional().isNumeric().withMessage('El importe debe ser numérico'),
-    validarCampos
+    validarCampos,
+    CamposPermitidos([
+        'fecha_reserva',
+        'salon_id',
+        'usuario_id',
+        'foto_cumpleaniero',
+        'tematica',
+        'turno_id',
+        'importe_salon',
+        'importe_total',
+        'servicios'
+
+    ])
     ],reservasControlador.editar);
 
 router.delete('/:id',autorizarUsuarios(ROL_ADMIN),reservasControlador.eliminar);

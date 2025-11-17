@@ -51,7 +51,15 @@ router.put('/:id',
     check('longitud').optional(),
     check('capacidad','La capacidad es necesaria y debe ser numérica.').optional().isNumeric().notEmpty(),
     check('importe', 'El importe es necesario y debe ser numérico').optional().isNumeric().notEmpty(),
-    validarCampos
+    validarCampos,
+    CamposPermitidos([
+        'titulo',
+        'direccion',
+        'latitud',
+        'longitud',
+        'capacidad',
+        'importe'
+    ])
 ],salonesControlador.editar);
 
 

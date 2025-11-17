@@ -30,13 +30,6 @@ export default class SalonesServicio{
 	editar = async (salon_id,datosSalon) =>{
         //verificar si existe
         const existe = await this.salones.buscarPorId(salon_id);
-        const {titulo} = datosSalon;
-
-        const existeTitulo = await this.salones.existeTitulo(titulo);
-        if(existeTitulo){
-            return {estado: false};
-        };
-
         
         if(!existe){
             return null;
